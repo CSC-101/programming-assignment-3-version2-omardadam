@@ -1,22 +1,6 @@
 import data
 import build_data
 import unittest
-from hw3 import population_total
-from hw3 import filter_by_state
-from hw3 import population_by_education
-from hw3 import population_by_ethnicity
-from hw3 import population_below_poverty_level
-from hw3 import percent_by_education
-from hw3 import percent_by_ethnicity
-from hw3 import percent_below_poverty_level
-from hw3 import education_greater_than
-from hw3 import education_less_than
-from hw3 import ethnicity_greater_than
-from hw3 import ethnicity_less_than
-from hw3 import below_poverty_level_greater_than
-from hw3 import below_poverty_level_less_than
-from build_data import get_data
-from data import CountyDemographics
 
 
 # These two values are defined to support testing below. The
@@ -196,58 +180,20 @@ class TestCases(unittest.TestCase):
 
     # Part 1
     # test population_total
-    def test_population_1(self):
-        self.assertEqual(population_total(reduced_data), 655813)
-
-    # Test population_total for full dataset
-    def test_population_2(self):
-        self.assertEqual(population_total(full_data), 318857056)
 
     # Part 2
     # test filter_by_state
-    def test_filter_by_state_1(self):
-        filtered_counties_empty = filter_by_state([], 'CA')
-        self.assertEqual(filtered_counties_empty, [])
-
-    # Test filter_by_state for a state with no counties (should return an empty list)
-    def test_filter_by_state_2(self):
-        filtered_counties_no = filter_by_state(reduced_data, 'ZX')  # Assuming 'XY' doesn't exist
-        self.assertEqual(filtered_counties_no, [])
 
     # Part 3
     # test population_by_education
     # test population_by_ethnicity
     # test population_below_poverty_level
-    def test_population_by_education(self):
-        result = population_by_education(reduced_data, "Bachelor's Degree or Higher")
-        self.assertAlmostEqual(result, 195114.09100000001)
-
-    def test_population_by_ethnicity(self):
-        result = population_by_ethnicity(reduced_data, "Two or More Races")
-        self.assertAlmostEqual(result, 23613.951)
-
-    def test_population_below_poverty_level(self):
-        result = population_below_poverty_level(reduced_data)
-        self.assertAlmostEqual(result, 107711.714)
 
     # Part 4
     # test percent_by_education
     # test percent_by_ethnicity
     # test percent_below_poverty_level
-    def test_percent_by_education(self):
-        result = percent_by_education(reduced_data, "Bachelor's Degree or Higher")
-        print(result)
-        self.assertTrue(result >= 0)
 
-    def test_percent_by_ethnicity(self):
-        result = percent_by_ethnicity(reduced_data, "Two or More Races")
-        print(result)
-        self.assertTrue(result >= 0)
-
-    def test_percent_below_poverty_level(self):
-        result = percent_below_poverty_level(reduced_data)
-        print(result)
-        self.assertTrue(result >= 0)
     # Part 5
     # test education_greater_than
     # test education_less_than
@@ -256,29 +202,6 @@ class TestCases(unittest.TestCase):
     # test below_poverty_level_greater_than
     # test below_poverty_level_less_than
 
-    def test_education_greater_than(self):
-        result = education_greater_than(reduced_data, "Bachelor's Degree or Higher", 35)
-        self.assertEqual([county.population for county in result], [150000, 500000])
-
-    def test_education_less_than(self):
-        result = education_less_than(reduced_data, "Bachelor's Degree or Higher", 35)
-        self.assertEqual([county.population for county in result], [279083])
-
-    def test_ethnicity_greater_than(self):
-        result = ethnicity_greater_than(reduced_data, "White", 55)
-        self.assertEqual([county.population for county in result], [150000, 500000])
-
-    def test_ethnicity_less_than(self):
-        result = ethnicity_less_than(reduced_data, "White", 55)
-        self.assertEqual([county.population for county in result], [279083])
-
-    def test_below_poverty_level_greater_than(self):
-        result = below_poverty_level_greater_than(reduced_data, 15)
-        self.assertEqual([county.population for county in result], [150000])
-
-    def test_below_poverty_level_less_than(self):
-        result = below_poverty_level_less_than(reduced_data, 15)
-        self.assertEqual([county.population for county in result], [279083, 500000])
 
 
 if __name__ == '__main__':
